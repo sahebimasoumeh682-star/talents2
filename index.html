@@ -85,22 +85,11 @@
   button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(118,75,162,0.5); }
   button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-  .btn-secondary {
-    background: #6c757d;
-  }
+  .btn-secondary { background: #6c757d; }
+  .btn-secondary:hover { background: #5a6268; box-shadow: 0 10px 25px rgba(108,117,125,0.4); }
 
-  .btn-secondary:hover {
-    background: #5a6268;
-    box-shadow: 0 10px 25px rgba(108,117,125,0.4);
-  }
-
-  .btn-print {
-    background: linear-gradient(135deg, #28a745, #20c997);
-  }
-
-  .btn-print:hover {
-    box-shadow: 0 10px 25px rgba(40,167,69,0.5);
-  }
+  .btn-print { background: linear-gradient(135deg, #28a745, #20c997); }
+  .btn-print:hover { box-shadow: 0 10px 25px rgba(40,167,69,0.5); }
 
   .talent-grid {
     display: grid;
@@ -150,7 +139,6 @@
     border: 2px solid #dc3545; display: block;
   }
 
-  /* پیام تشکر بزرگ برای دانش‌آموز */
   .thank-you {
     display: none;
     text-align: center;
@@ -208,10 +196,7 @@
     font-size: 0.9rem;
   }
 
-  .student-list .date {
-    font-size: 0.8rem;
-    color: #888;
-  }
+  .student-list .date { font-size: 0.8rem; color: #888; }
 
   .empty-msg { text-align: center; color: #888; padding: 20px; }
 
@@ -242,9 +227,7 @@
 
   .loading { text-align: center; color: #667eea; padding: 20px; font-weight: bold; }
 
-  /* پنل مدیر */
   #adminPanel { display: none; }
-  #adminLogin { display: none; }
 
   .admin-bar {
     display: flex;
@@ -277,7 +260,6 @@
     .talent-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* استایل چاپ */
   @media print {
     body { background: #fff; padding: 0; }
     .header h1 {
@@ -313,7 +295,7 @@
 
 <div class="container">
 
-  <!-- ============ فرم ثبت دانش‌آموز ============ -->
+  <!-- فرم ثبت دانش‌آموز -->
   <div class="card no-print" id="studentFormCard">
     <h2>📝 ثبت استعداد دانش‌آموز</h2>
 
@@ -330,7 +312,6 @@
 
     <div class="message" id="message"></div>
 
-    <!-- پیام تشکر بزرگ بعد از ثبت -->
     <div class="thank-you" id="thankYou">
       <span class="check-icon">✅</span>
       <h3>استعداد شما در الهه مهر ثبت شد</h3>
@@ -339,7 +320,7 @@
     </div>
   </div>
 
-  <!-- ============ ورود مدیر ============ -->
+  <!-- ورود مدیر -->
   <div class="card no-print" id="adminLoginCard">
     <h2>🔐 ورود مدیر</h2>
     <p style="margin-bottom: 15px; color: #666;">برای مشاهده لیست دانش‌آموزان و چاپ آن، رمز مدیر را وارد کنید.</p>
@@ -349,7 +330,7 @@
     <div class="message" id="loginMessage"></div>
   </div>
 
-  <!-- ============ پنل مدیر ============ -->
+  <!-- پنل مدیر -->
   <div id="adminPanel">
 
     <div class="card no-print">
@@ -387,7 +368,6 @@
 
 </div>
 
-<!-- Supabase SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -395,8 +375,8 @@
   const SUPABASE_URL = 'https://krumvyihfrkmvaodbdyy.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_PCkGbAdEPzNYtEuLs0ovSw_WaN-9TD6';
 
-  // 🔑 رمز مدیر — اینجا تغییر دهید
-  const ADMIN_PASSWORD = 'elahemehr1404';
+  // 🔑 رمز مدیر
+  const ADMIN_PASSWORD = '13661366';
 
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   // ===============================================
@@ -420,7 +400,6 @@
   let students = [];
   let isAdmin = false;
 
-  // ---------- استعدادها ----------
   function renderTalents() {
     const grid = document.getElementById('talentGrid');
     grid.innerHTML = '';
@@ -440,7 +419,6 @@
     selectedTalent = id;
   }
 
-  // ---------- ثبت دانش‌آموز ----------
   async function registerStudent() {
     const firstName = document.getElementById('firstName').value.trim();
     const lastName  = document.getElementById('lastName').value.trim();
@@ -490,7 +468,6 @@
       .forEach(el => el.style.display = 'none');
     document.getElementById('thankYou').style.display = 'block';
 
-    // اگر مدیر وارد شده بود، لیست را رفرش کن
     if (isAdmin) loadStudents();
   }
 
@@ -502,7 +479,6 @@
     document.getElementById('submitBtn').style.display = '';
   }
 
-  // ---------- ورود مدیر ----------
   function loginAdmin() {
     const pass = document.getElementById('adminPassword').value;
     const msg = document.getElementById('loginMessage');
@@ -527,7 +503,6 @@
     document.getElementById('adminLoginCard').style.display = 'block';
   }
 
-  // ---------- خواندن دانش‌آموزان ----------
   async function loadStudents() {
     if (!isAdmin) return;
 
@@ -574,7 +549,6 @@
     });
   }
 
-  // ---------- حذف ----------
   async function deleteStudent(id) {
     if (!confirm('آیا از حذف این دانش‌آموز مطمئن هستید؟')) return;
 
@@ -590,7 +564,6 @@
     await loadStudents();
   }
 
-  // ---------- آمار ----------
   function renderStats() {
     document.getElementById('totalCount').textContent = students.length;
 
@@ -612,7 +585,6 @@
     document.getElementById('topTalent').textContent = top;
   }
 
-  // ---------- پیام ----------
   function showMessage(text, type) {
     const msg = document.getElementById('message');
     msg.textContent = text;
@@ -620,7 +592,6 @@
     setTimeout(() => { msg.className = 'message'; }, 5000);
   }
 
-  // ---------- اجرای اولیه ----------
   renderTalents();
 </script>
 
