@@ -29,7 +29,7 @@
     letter-spacing: 2px;
   }
 
-  .container { max-width: 800px; margin: 0 auto; }
+  .container { max-width: 900px; margin: 0 auto; }
 
   .card {
     background: #fff;
@@ -45,6 +45,16 @@
     font-size: 1.5rem;
     border-bottom: 3px solid #667eea;
     padding-bottom: 10px;
+  }
+
+  .hint {
+    background: #eef1ff;
+    border-right: 4px solid #667eea;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
   }
 
   label { display: block; margin-bottom: 8px; font-weight: bold; color: #444; }
@@ -91,34 +101,121 @@
   .btn-print { background: linear-gradient(135deg, #28a745, #20c997); }
   .btn-print:hover { box-shadow: 0 10px 25px rgba(40,167,69,0.5); }
 
+  /* دسته‌بندی استعدادها */
+  .talent-category {
+    margin-bottom: 25px;
+    border: 2px solid #eef1ff;
+    border-radius: 15px;
+    padding: 15px;
+    background: #fafbff;
+  }
+
+  .talent-category h3 {
+    color: #764ba2;
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .talent-category h3 .cat-icon {
+    font-size: 1.4rem;
+  }
+
+  .talent-category h3 .cat-count {
+    background: #667eea;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-right: auto;
+  }
+
   .talent-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
   }
 
   .talent-option {
-    padding: 15px;
+    padding: 12px 10px;
     border: 2px solid #ddd;
     border-radius: 12px;
     text-align: center;
     cursor: pointer;
-    transition: 0.3s;
-    background: #f9f9ff;
+    transition: 0.25s;
+    background: #fff;
     font-weight: bold;
+    font-size: 0.9rem;
+    position: relative;
+    user-select: none;
   }
 
-  .talent-option:hover { border-color: #667eea; background: #eef1ff; }
+  .talent-option:hover { border-color: #667eea; background: #eef1ff; transform: translateY(-2px); }
 
   .talent-option.selected {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: #fff;
     border-color: #764ba2;
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 
-  .talent-option .emoji { font-size: 2rem; display: block; margin-bottom: 8px; }
+  .talent-option.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    font-size: 1rem;
+    background: #fff;
+    color: #28a745;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .talent-option .emoji { font-size: 1.6rem; display: block; margin-bottom: 5px; }
+
+  /* نمایش استعدادهای انتخاب‌شده */
+  .selected-summary {
+    background: linear-gradient(135deg, #eef1ff, #f5f0ff);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px dashed #667eea;
+  }
+
+  .selected-summary .title {
+    font-weight: bold;
+    color: #764ba2;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+
+  .selected-summary .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .selected-summary .chip {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+
+  .selected-summary .empty {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9rem;
+  }
 
   .message {
     padding: 15px;
@@ -188,12 +285,20 @@
 
   .student-list .name { font-weight: bold; color: #333; font-size: 1.1rem; }
 
+  .student-list .talents-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    flex: 1;
+    justify-content: flex-end;
+  }
+
   .student-list .talent {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: #fff;
-    padding: 6px 15px;
+    padding: 5px 12px;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .student-list .date { font-size: 0.8rem; color: #888; }
@@ -254,6 +359,34 @@
     margin: 0;
   }
 
+  /* بخش آمار استعدادها */
+  .talent-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+
+  .talent-stat-item {
+    background: #f9f9ff;
+    border-right: 4px solid #667eea;
+    border-radius: 10px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+
+  .talent-stat-item .t-name { font-weight: bold; color: #444; }
+  .talent-stat-item .t-count {
+    background: #667eea;
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.85rem;
+  }
+
   @media (max-width: 600px) {
     .header h1 { font-size: 1.8rem; padding: 15px; }
     .card { padding: 20px; }
@@ -284,6 +417,10 @@
       color: #000 !important;
       border: 1px solid #999;
     }
+    .talent-stat-item {
+      background: #fff;
+      border: 1px solid #ccc;
+    }
   }
 </style>
 </head>
@@ -305,10 +442,21 @@
     <label for="lastName">نام خانوادگی:</label>
     <input type="text" id="lastName" placeholder="نام خانوادگی خود را وارد کنید" maxlength="30">
 
-    <label>استعداد خود را انتخاب کنید:</label>
-    <div class="talent-grid" id="talentGrid"></div>
+    <div class="hint">
+      💡 می‌توانید <b>یک یا چند استعداد</b> را انتخاب کنید. برای لغو انتخاب، دوباره روی همان گزینه بزنید.
+    </div>
 
-    <button id="submitBtn" onclick="registerStudent()">ثبت استعداد</button>
+    <label>استعدادهای خود را انتخاب کنید:</label>
+    <div id="talentsContainer"></div>
+
+    <div class="selected-summary">
+      <div class="title">🎯 استعدادهای انتخاب‌شده شما:</div>
+      <div class="chips" id="selectedChips">
+        <span class="empty">هنوز چیزی انتخاب نکرده‌اید...</span>
+      </div>
+    </div>
+
+    <button id="submitBtn" onclick="registerStudent()">ثبت استعدادها</button>
 
     <div class="message" id="message"></div>
 
@@ -348,9 +496,20 @@
           <span class="lbl">کل دانش‌آموزان</span>
         </div>
         <div class="stat-box">
+          <span class="num" id="totalTalents">0</span>
+          <span class="lbl">کل استعدادهای ثبت‌شده</span>
+        </div>
+        <div class="stat-box">
           <span class="num" id="topTalent">-</span>
           <span class="lbl">محبوب‌ترین استعداد</span>
         </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📈 توزیع استعدادها</h2>
+      <div class="talent-stats" id="talentStats">
+        <p class="empty-msg">هنوز آماری وجود ندارد.</p>
       </div>
     </div>
 
@@ -381,44 +540,165 @@
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   // ===============================================
 
-  const talents = [
-    { id: 'sport',    name: 'ورزش',        emoji: '⚽' },
-    { id: 'art',      name: 'نقاشی',       emoji: '🎨' },
-    { id: 'music',    name: 'موسیقی',      emoji: '🎵' },
-    { id: 'math',     name: 'ریاضی',       emoji: '🔢' },
-    { id: 'science',  name: 'علوم',        emoji: '🔬' },
-    { id: 'writing',  name: 'نویسندگی',    emoji: '✍️' },
-    { id: 'theater',  name: 'تئاتر',       emoji: '🎭' },
-    { id: 'computer', name: 'کامپیوتر',    emoji: '💻' },
-    { id: 'language', name: 'زبان‌های خارجی', emoji: '🌍' },
-    { id: 'quran',    name: 'قرآن و معارف', emoji: '📖' },
-    { id: 'chess',    name: 'شطرنج',       emoji: '♟️' },
-    { id: 'cooking',  name: 'آشپزی',       emoji: '🍳' }
+  // ================== دسته‌بندی استعدادها ==================
+  const talentCategories = [
+    {
+      id: 'sports',
+      title: 'ورزشی',
+      icon: '⚽',
+      talents: [
+        { id: 'volleyball',  name: 'والیبال',       emoji: '🏐' },
+        { id: 'dodgeball',   name: 'دژبال (وسطی)',  emoji: '🤾' },
+        { id: 'football',    name: 'فوتبال',        emoji: '⚽' },
+        { id: 'basketball',  name: 'بسکتبال',       emoji: '🏀' },
+        { id: 'handball',    name: 'هندبال',        emoji: '🤾‍♂️' },
+        { id: 'swimming',    name: 'شنا',           emoji: '🏊' },
+        { id: 'athletics',   name: 'دوومیدانی',     emoji: '🏃' },
+        { id: 'badminton',   name: 'بدمینتون',      emoji: '🏸' },
+        { id: 'pingpong',    name: 'تنیس روی میز',  emoji: '🏓' },
+        { id: 'wrestling',   name: 'کشتی',          emoji: '🤼' },
+        { id: 'gymnastics',  name: 'ژیمناستیک',     emoji: '🤸' },
+        { id: 'martial',     name: 'هنرهای رزمی',   emoji: '🥋' },
+        { id: 'chess',       name: 'شطرنج',         emoji: '♟️' },
+        { id: 'skating',     name: 'اسکیت',         emoji: '⛸️' }
+      ]
+    },
+    {
+      id: 'art',
+      title: 'هنری',
+      icon: '🎨',
+      talents: [
+        { id: 'painting',   name: 'نقاشی',           emoji: '🎨' },
+        { id: 'calligraphy',name: 'خطاطی',           emoji: '✍️' },
+        { id: 'music',      name: 'موسیقی',          emoji: '🎵' },
+        { id: 'singing',    name: 'آواز و سرود',     emoji: '🎤' },
+        { id: 'theater',    name: 'تئاتر و نمایش',   emoji: '🎭' },
+        { id: 'photography',name: 'عکاسی',           emoji: '📷' },
+        { id: 'handicraft', name: 'صنایع دستی',      emoji: '🧶' },
+        { id: 'origami',    name: 'کاغذ و اوریگامی', emoji: '📄' },
+        { id: 'filmmaking', name: 'فیلم‌سازی',       emoji: '🎬' }
+      ]
+    },
+    {
+      id: 'science',
+      title: 'علمی و آموزشی',
+      icon: '🔬',
+      talents: [
+        { id: 'math',       name: 'ریاضی',           emoji: '🔢' },
+        { id: 'science',    name: 'علوم تجربی',      emoji: '🔬' },
+        { id: 'physics',    name: 'فیزیک',           emoji: '⚛️' },
+        { id: 'chemistry',  name: 'شیمی',            emoji: '🧪' },
+        { id: 'biology',    name: 'زیست‌شناسی',      emoji: '🧬' },
+        { id: 'astronomy',  name: 'نجوم و ستاره‌شناسی', emoji: '🔭' },
+        { id: 'computer',   name: 'کامپیوتر و برنامه‌نویسی', emoji: '💻' },
+        { id: 'robotics',   name: 'رباتیک',          emoji: '🤖' },
+        { id: 'language',   name: 'زبان‌های خارجی',   emoji: '🌍' },
+        { id: 'writing',    name: 'نویسندگی و داستان', emoji: '📝' },
+        { id: 'poetry',     name: 'شعر و ادبیات',    emoji: '📜' },
+        { id: 'quran',      name: 'قرآن و معارف',    emoji: '📖' }
+      ]
+    },
+    {
+      id: 'practical',
+      title: 'مهارتی و کاربردی',
+      icon: '🛠️',
+      talents: [
+        { id: 'cooking',    name: 'آشپزی و شیرینی‌پزی', emoji: '🍳' },
+        { id: 'sewing',     name: 'خیاطی و دوخت',    emoji: '🧵' },
+        { id: 'gardening',  name: 'باغبانی و گل‌کاری', emoji: '🌱' },
+        { id: 'carpentry',  name: 'نجاری',           emoji: '🪚' },
+        { id: 'repair',     name: 'تعمیرات',         emoji: '🔧' },
+        { id: 'firstaid',   name: 'کمک‌های اولیه',   emoji: '🩺' },
+        { id: 'leadership', name: 'رهبری و مدیریت',  emoji: '👑' },
+        { id: 'speaking',   name: 'سخنرانی و فن بیان', emoji: '🎙️' },
+        { id: 'debate',     name: 'مناظره و گفتگو',  emoji: '💬' }
+      ]
+    }
   ];
 
-  let selectedTalent = null;
+  // آرایه تخت از همه استعدادها برای جستجوی سریع
+  const allTalents = talentCategories.flatMap(c => c.talents);
+
+  let selectedTalents = new Set();
   let students = [];
   let isAdmin = false;
 
+  // ---------- رندر دسته‌بندی استعدادها ----------
   function renderTalents() {
-    const grid = document.getElementById('talentGrid');
-    grid.innerHTML = '';
-    talents.forEach(t => {
-      const div = document.createElement('div');
-      div.className = 'talent-option';
-      div.dataset.id = t.id;
-      div.innerHTML = `<span class="emoji">${t.emoji}</span>${t.name}`;
-      div.onclick = () => selectTalent(t.id, div);
-      grid.appendChild(div);
+    const container = document.getElementById('talentsContainer');
+    container.innerHTML = '';
+
+    talentCategories.forEach(cat => {
+      const catDiv = document.createElement('div');
+      catDiv.className = 'talent-category';
+
+      const header = document.createElement('h3');
+      header.innerHTML = `<span class="cat-icon">${cat.icon}</span> ${cat.title} <span class="cat-count" id="catCount-${cat.id}">0</span>`;
+      catDiv.appendChild(header);
+
+      const grid = document.createElement('div');
+      grid.className = 'talent-grid';
+
+      cat.talents.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'talent-option';
+        div.dataset.id = t.id;
+        div.dataset.cat = cat.id;
+        div.innerHTML = `<span class="emoji">${t.emoji}</span>${t.name}`;
+        div.onclick = () => toggleTalent(t.id, div);
+        grid.appendChild(div);
+      });
+
+      catDiv.appendChild(grid);
+      container.appendChild(catDiv);
     });
   }
 
-  function selectTalent(id, el) {
-    document.querySelectorAll('.talent-option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedTalent = id;
+  // ---------- انتخاب/لغو استعداد ----------
+  function toggleTalent(id, el) {
+    if (selectedTalents.has(id)) {
+      selectedTalents.delete(id);
+      el.classList.remove('selected');
+    } else {
+      selectedTalents.add(id);
+      el.classList.add('selected');
+    }
+    updateSelectedChips();
+    updateCategoryCounts();
   }
 
+  function updateSelectedChips() {
+    const chips = document.getElementById('selectedChips');
+    chips.innerHTML = '';
+
+    if (selectedTalents.size === 0) {
+      chips.innerHTML = '<span class="empty">هنوز چیزی انتخاب نکرده‌اید...</span>';
+      return;
+    }
+
+    selectedTalents.forEach(id => {
+      const t = allTalents.find(x => x.id === id);
+      if (t) {
+        const chip = document.createElement('span');
+        chip.className = 'chip';
+        chip.textContent = `${t.emoji} ${t.name}`;
+        chips.appendChild(chip);
+      }
+    });
+  }
+
+  function updateCategoryCounts() {
+    talentCategories.forEach(cat => {
+      const count = cat.talents.filter(t => selectedTalents.has(t.id)).length;
+      const el = document.getElementById(`catCount-${cat.id}`);
+      if (el) {
+        el.textContent = count;
+        el.style.background = count > 0 ? '#28a745' : '#667eea';
+      }
+    });
+  }
+
+  // ---------- ثبت دانش‌آموز ----------
   async function registerStudent() {
     const firstName = document.getElementById('firstName').value.trim();
     const lastName  = document.getElementById('lastName').value.trim();
@@ -428,12 +708,24 @@
       showMessage('لطفاً نام و نام خانوادگی خود را وارد کنید.', 'error');
       return;
     }
-    if (!selectedTalent) {
-      showMessage('لطفاً استعداد خود را انتخاب کنید.', 'error');
+    if (selectedTalents.size === 0) {
+      showMessage('لطفاً حداقل یک استعداد انتخاب کنید.', 'error');
       return;
     }
 
-    const talent = talents.find(t => t.id === selectedTalent);
+    // تبدیل استعدادهای انتخاب‌شده به نام‌ها
+    const chosenNames = [];
+    const chosenEmojis = [];
+    selectedTalents.forEach(id => {
+      const t = allTalents.find(x => x.id === id);
+      if (t) {
+        chosenNames.push(t.name);
+        chosenEmojis.push(t.emoji);
+      }
+    });
+
+    const talentString = chosenNames.join('، ');
+    const emojiString = chosenEmojis.join(' ');
 
     btn.disabled = true;
     btn.textContent = 'در حال ثبت...';
@@ -443,12 +735,12 @@
       .insert([{
         first_name: firstName,
         last_name: lastName,
-        talent: talent.name,
-        emoji: talent.emoji
+        talent: talentString,
+        emoji: emojiString
       }]);
 
     btn.disabled = false;
-    btn.textContent = 'ثبت استعداد';
+    btn.textContent = 'ثبت استعدادها';
 
     if (error) {
       console.error(error);
@@ -456,15 +748,17 @@
       return;
     }
 
-    // مخفی کردن فرم و نمایش پیام تشکر
+    // پاک کردن فرم
     document.getElementById('firstName').value = '';
     document.getElementById('lastName').value = '';
+    selectedTalents.clear();
     document.querySelectorAll('.talent-option').forEach(o => o.classList.remove('selected'));
-    selectedTalent = null;
+    updateSelectedChips();
+    updateCategoryCounts();
     document.getElementById('message').className = 'message';
 
     document.getElementById('studentFormCard').querySelector('h2').style.display = 'none';
-    document.querySelectorAll('#studentFormCard label, #studentFormCard input, #studentFormCard .talent-grid, #studentFormCard > button')
+    document.querySelectorAll('#studentFormCard .hint, #studentFormCard label, #studentFormCard input, #studentFormCard #talentsContainer, #studentFormCard .selected-summary, #studentFormCard > button')
       .forEach(el => el.style.display = 'none');
     document.getElementById('thankYou').style.display = 'block';
 
@@ -474,11 +768,12 @@
   function resetForm() {
     document.getElementById('thankYou').style.display = 'none';
     document.getElementById('studentFormCard').querySelector('h2').style.display = 'block';
-    document.querySelectorAll('#studentFormCard label, #studentFormCard input, #studentFormCard .talent-grid')
+    document.querySelectorAll('#studentFormCard .hint, #studentFormCard label, #studentFormCard input, #studentFormCard #talentsContainer, #studentFormCard .selected-summary')
       .forEach(el => el.style.display = '');
     document.getElementById('submitBtn').style.display = '';
   }
 
+  // ---------- ورود مدیر ----------
   function loginAdmin() {
     const pass = document.getElementById('adminPassword').value;
     const msg = document.getElementById('loginMessage');
@@ -503,6 +798,7 @@
     document.getElementById('adminLoginCard').style.display = 'block';
   }
 
+  // ---------- خواندن دانش‌آموزان ----------
   async function loadStudents() {
     if (!isAdmin) return;
 
@@ -523,6 +819,7 @@
     students = data || [];
     renderStudents();
     renderStats();
+    renderTalentStats();
   }
 
   function renderStudents() {
@@ -538,10 +835,20 @@
       const date = s.created_at
         ? new Date(s.created_at).toLocaleDateString('fa-IR')
         : '';
+
+      // تقسیم استعدادها بر اساس "، "
+      const talentNames = s.talent ? s.talent.split('، ') : [];
+      const emojis = s.emoji ? s.emoji.split(' ') : [];
+
+      const talentsHtml = talentNames.map((name, idx) => {
+        const em = emojis[idx] || '';
+        return `<span class="talent">${em} ${name}</span>`;
+      }).join('');
+
       const li = document.createElement('li');
       li.innerHTML = `
-        <span class="name">${i + 1}. ${s.emoji || ''} ${s.first_name} ${s.last_name}</span>
-        <span class="talent">${s.talent}</span>
+        <span class="name">${i + 1}. ${s.first_name} ${s.last_name}</span>
+        <div class="talents-wrap">${talentsHtml}</div>
         <span class="date no-print">${date}</span>
         <button class="delete-btn no-print" onclick="deleteStudent('${s.id}')">حذف</button>
       `;
@@ -567,15 +874,25 @@
   function renderStats() {
     document.getElementById('totalCount').textContent = students.length;
 
-    if (students.length === 0) {
+    // شمارش کل استعدادها
+    let totalTalentsCount = 0;
+    const counts = {};
+    students.forEach(s => {
+      if (s.talent) {
+        const names = s.talent.split('، ');
+        totalTalentsCount += names.length;
+        names.forEach(n => {
+          counts[n] = (counts[n] || 0) + 1;
+        });
+      }
+    });
+
+    document.getElementById('totalTalents').textContent = totalTalentsCount;
+
+    if (totalTalentsCount === 0) {
       document.getElementById('topTalent').textContent = '-';
       return;
     }
-
-    const counts = {};
-    students.forEach(s => {
-      counts[s.talent] = (counts[s.talent] || 0) + 1;
-    });
 
     let top = '';
     let max = 0;
@@ -585,6 +902,39 @@
     document.getElementById('topTalent').textContent = top;
   }
 
+  function renderTalentStats() {
+    const container = document.getElementById('talentStats');
+    container.innerHTML = '';
+
+    const counts = {};
+    students.forEach(s => {
+      if (s.talent) {
+        s.talent.split('، ').forEach(n => {
+          counts[n] = (counts[n] || 0) + 1;
+        });
+      }
+    });
+
+    const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+    if (entries.length === 0) {
+      container.innerHTML = '<p class="empty-msg">هنوز آماری وجود ندارد.</p>';
+      return;
+    }
+
+    entries.forEach(([name, count]) => {
+      const t = allTalents.find(x => x.name === name);
+      const emoji = t ? t.emoji : '⭐';
+      const div = document.createElement('div');
+      div.className = 'talent-stat-item';
+      div.innerHTML = `
+        <span class="t-name">${emoji} ${name}</span>
+        <span class="t-count">${count} نفر</span>
+      `;
+      container.appendChild(div);
+    });
+  }
+
   function showMessage(text, type) {
     const msg = document.getElementById('message');
     msg.textContent = text;
@@ -592,6 +942,7 @@
     setTimeout(() => { msg.className = 'message'; }, 5000);
   }
 
+  // ---------- اجرای اولیه ----------
   renderTalents();
 </script>
 
